@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACTIVE WEAR - 2025 Spring Collection</title>
+    <title>어반 스포츠 세트 - ACTIVE WEAR</title>
     <style>
         * {
             margin: 0;
@@ -13,361 +13,655 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 40px auto;
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3em;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            letter-spacing: 1px;
-        }
-
-        .catalog-grid {
+        .product-detail {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             padding: 40px;
         }
 
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 350px;
+        /* Image Slider */
+        .image-gallery {
             position: relative;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
             overflow: hidden;
             background: #f5f5f5;
         }
 
-        .product-image img {
-            width: 100%;
+        .slider-wrapper {
+            display: flex;
             height: 100%;
-            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
+        .slide {
+            min-width: 100%;
+            height: 100%;
         }
 
-        .product-info {
-            padding: 25px;
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .product-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .product-category {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .product-description {
-            color: #7f8c8d;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .product-features li {
-            padding: 5px 0;
-            color: #555;
-            font-size: 0.9em;
-        }
-
-        .product-features li::before {
-            content: "✓ ";
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 5px;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid #ecf0f1;
-        }
-
-        .product-price {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #e74c3c;
-        }
-
-        .product-colors {
-            display: flex;
-            gap: 8px;
-        }
-
-        .color-dot {
-            width: 25px;
-            height: 25px;
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 2px solid #ddd;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s;
         }
 
-        .color-dot:hover {
-            transform: scale(1.2);
-            border-color: #667eea;
+        .slider-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.9em;
+        .slider-btn.prev {
+            left: 20px;
         }
 
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
+        .slider-btn.next {
+            right: 20px;
         }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-            .catalog-grid {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-            .product-image {
-                height: 280px;
-            }
+        .dot.active {
+            background: #667eea;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Product Info */
+        .product-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
         .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e74c3c;
+            display: inline-block;
+            background: #27ae60;
             color: white;
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: 700;
             font-size: 0.85em;
-            z-index: 10;
+            width: fit-content;
         }
 
-        .new-badge {
-            background: #27ae60;
+        .product-category {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+
+        .review-count {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .price-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .original-price {
+            color: #95a5a6;
+            text-decoration: line-through;
+            font-size: 1.2em;
+        }
+
+        .sale-price {
+            color: #e74c3c;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .discount-rate {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        .product-description {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .features-list li {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .color-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .color-choices {
+            display: flex;
+            gap: 15px;
+        }
+
+        .color-choice {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid #ddd;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .color-choice:hover,
+        .color-choice.selected {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+
+        .color-choice.selected::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .size-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .size-choices {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .size-choice {
+            padding: 15px 25px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .size-choice:hover,
+        .size-choice.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .quantity-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .quantity-display {
+            font-size: 1.5em;
+            font-weight: 700;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-cart {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-cart:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-buy {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-buy:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .delivery-info {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .delivery-info p {
+            color: #2c3e50;
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .delivery-info strong {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                margin: 20px 10px;
+                border-radius: 15px;
+            }
+
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+
+            .slider-container {
+                height: 350px;
+            }
+
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+
+            .slider-btn.prev {
+                left: 10px;
+            }
+
+            .slider-btn.next {
+                right: 10px;
+            }
+
+            .product-title {
+                font-size: 1.8em;
+            }
+
+            .sale-price {
+                font-size: 2em;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="index.html" class="back-btn">← 목록으로 돌아가기</a>
+    </div>
+
     <div class="container">
-        <header>
-            <h1>ACTIVE WEAR</h1>
-            <p>2025 Spring Collection - 20대를 위한 프리미엄 체육복</p>
-        </header>
-
-        <div class="catalog-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="badge new-badge">NEW</span>
-                    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=800&fit=crop" alt="어반 스포츠 세트">
-                </div>
-                <div class="product-info">
-                    <span class="product-category">트레이닝 세트</span>
-                    <h2 class="product-title">어반 스포츠 세트</h2>
-                    <p class="product-description">
-                        도심 속 운동을 위한 스타일리시한 트레이닝복. 신축성 좋은 폴리에스터 소재로 편안한 착용감을 제공합니다.
-                    </p>
-                    <ul class="product-features">
-                        <li>4-way 신축성 원단</li>
-                        <li>속건성 기능성 소재</li>
-                        <li>UV 차단 기능</li>
-                    </ul>
-                    <div class="product-footer">
-                        <div class="product-price">89,000원</div>
-                        <div class="product-colors">
-                            <div class="color-dot" style="background: #2c3e50;"></div>
-                            <div class="color-dot" style="background: #34495e;"></div>
-                            <div class="color-dot" style="background: #95a5a6;"></div>
+        <div class="product-detail">
+            <!-- Image Gallery with Slider -->
+            <div class="image-gallery">
+                <div class="slider-container">
+                    <div class="slider-wrapper" id="sliderWrapper">
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=800&fit=crop" alt="어반 스포츠 세트 1">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=800&fit=crop" alt="어반 스포츠 세트 2">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1614963366795-8e123b7e5dbb?w=800&h=800&fit=crop" alt="어반 스포츠 세트 3">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?w=800&h=800&fit=crop" alt="어반 스포츠 세트 4">
                         </div>
                     </div>
+                    <button class="slider-btn prev" onclick="moveSlide(-1)">‹</button>
+                    <button class="slider-btn next" onclick="moveSlide(1)">›</button>
                 </div>
+                <div class="slider-dots" id="sliderDots"></div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="badge">BEST</span>
-                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=800&fit=crop" alt="프로 러너 세트">
-                </div>
-                <div class="product-info">
-                    <span class="product-category">러닝 웨어</span>
-                    <h2 class="product-title">프로 러너 세트</h2>
-                    <p class="product-description">
-                        전문 러너들을 위한 초경량 러닝복. 통기성이 뛰어나며 야간 러닝을 위한 반사 디테일이 포함되어 있습니다.
-                    </p>
-                    <ul class="product-features">
-                        <li>초경량 메쉬 소재</li>
-                        <li>반사 안전 디테일</li>
-                        <li>항균 처리</li>
-                    </ul>
-                    <div class="product-footer">
-                        <div class="product-price">119,000원</div>
-                        <div class="product-colors">
-                            <div class="color-dot" style="background: #e74c3c;"></div>
-                            <div class="color-dot" style="background: #3498db;"></div>
-                            <div class="color-dot" style="background: #f39c12;"></div>
-                        </div>
+            <!-- Product Information -->
+            <div class="product-info-section">
+                <div>
+                    <span class="badge">NEW</span>
+                    <p class="product-category">트레이닝 세트</p>
+                    <h1 class="product-title">어반 스포츠 세트</h1>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(128개 리뷰)</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=800&fit=crop" alt="짐 마스터 세트">
-                </div>
-                <div class="product-info">
-                    <span class="product-category">헬스 웨어</span>
-                    <h2 class="product-title">짐 마스터 세트</h2>
-                    <p class="product-description">
-                        헬스장에서 빛나는 근육 핏 트레이닝복. 압축 기능으로 운동 효율을 높이고 근육 회복을 도와줍니다.
-                    </p>
-                    <ul class="product-features">
-                        <li>컴프레션 기능</li>
-                        <li>근육 서포트 라인</li>
-                        <li>땀 흡수 속건 원단</li>
-                    </ul>
-                    <div class="product-footer">
-                        <div class="product-price">99,000원</div>
-                        <div class="product-colors">
-                            <div class="color-dot" style="background: #2c3e50;"></div>
-                            <div class="color-dot" style="background: #c0392b;"></div>
-                            <div class="color-dot" style="background: #16a085;"></div>
-                        </div>
+                <div class="price-section">
+                    <div class="original-price">99,000원</div>
+                    <div>
+                        <span class="sale-price">89,000원</span>
+                        <span class="discount-rate">10% OFF</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="badge new-badge">NEW</span>
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=800&fit=crop" alt="플렉스 요가 세트">
+                <div class="product-description">
+                    도심 속 운동을 위한 스타일리시한 트레이닝복. 신축성 좋은 폴리에스터 소재로 편안한 착용감을 제공하며, 세련된 디자인으로 운동 후 일상복으로도 착용 가능합니다.
                 </div>
-                <div class="product-info">
-                    <span class="product-category">요가/필라테스</span>
-                    <h2 class="product-title">플렉스 요가 세트</h2>
-                    <p class="product-description">
-                        요가와 필라테스를 위한 초경량 세트. 부드러운 착용감과 완벽한 신축성으로 모든 동작을 자유롭게 합니다.
-                    </p>
-                    <ul class="product-features">
-                        <li>무봉제 심리스 디자인</li>
-                        <li>360도 스트레치</li>
-                        <li>피부 친화적 소재</li>
-                    </ul>
-                    <div class="product-footer">
-                        <div class="product-price">79,000원</div>
-                        <div class="product-colors">
-                            <div class="color-dot" style="background: #e8b4e8;"></div>
-                            <div class="color-dot" style="background: #9b59b6;"></div>
-                            <div class="color-dot" style="background: #ecf0f1;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="badge">HOT</span>
-                    <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&h=800&fit=crop" alt="스트릿 프로 세트">
-                </div>
-                <div class="product-info">
-                    <span class="product-category">스트릿 스포츠</span>
-                    <h2 class="product-title">스트릿 프로 세트</h2>
-                    <p class="product-description">
-                        거리 운동과 일상을 연결하는 하이브리드 디자인. 스케이트보드, 농구 등 스트릿 스포츠에 최적화되어 있습니다.
-                    </p>
-                    <ul class="product-features">
-                        <li>내구성 강화 원단</li>
-                        <li>오버사이즈 핏</li>
-                        <li>멀티 포켓 디자인</li>
+                <div>
+                    <h3 class="section-title">주요 특징</h3>
+                    <ul class="features-list">
+                        <li>4-way 신축성 원단으로 자유로운 움직임</li>
+                        <li>속건성 기능성 소재로 땀 배출 우수</li>
+                        <li>UV 차단 기능 (UPF 50+)</li>
+                        <li>항균 처리로 냄새 방지</li>
+                        <li>반사 디테일로 야간 활동 안전성 확보</li>
                     </ul>
-                    <div class="product-footer">
-                        <div class="product-price">109,000원</div>
-                        <div class="product-colors">
-                            <div class="color-dot" style="background: #2c3e50;"></div>
-                            <div class="color-dot" style="background: #27ae60;"></div>
-                            <div class="color-dot" style="background: #f39c12;"></div>
-                        </div>
+                </div>
+
+                <div class="color-options">
+                    <h3 class="section-title">컬러 선택</h3>
+                    <div class="color-choices">
+                        <div class="color-choice selected" style="background: #2c3e50;" onclick="selectColor(this)"></div>
+                        <div class="color-choice" style="background: #34495e;" onclick="selectColor(this)"></div>
+                        <div class="color-choice" style="background: #95a5a6;" onclick="selectColor(this)"></div>
                     </div>
+                </div>
+
+                <div class="size-options">
+                    <h3 class="section-title">사이즈 선택</h3>
+                    <div class="size-choices">
+                        <div class="size-choice" onclick="selectSize(this)">S</div>
+                        <div class="size-choice selected" onclick="selectSize(this)">M</div>
+                        <div class="size-choice" onclick="selectSize(this)">L</div>
+                        <div class="size-choice" onclick="selectSize(this)">XL</div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <h3 class="section-title">수량</h3>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                        <span class="quantity-display" id="quantity">1</span>
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-cart">장바구니</button>
+                    <button class="btn btn-buy">바로 구매</button>
+                </div>
+
+                <div class="delivery-info">
+                    <p><strong>배송비:</strong> 3,000원 (50,000원 이상 무료배송)</p>
+                    <p><strong>배송기간:</strong> 주문 후 2-3일 소요</p>
+                    <p><strong>반품/교환:</strong> 수령 후 7일 이내 가능</p>
                 </div>
             </div>
         </div>
-
-        <footer>
-            <p>© 2025 ACTIVE WEAR. All rights reserved.</p>
-            <p>문의: contact@activewear.com | 고객센터: 1588-0000</p>
-            <p>GitHub에서 호스팅 · <a href="https://github.com" target="_blank">Repository 방문하기</a></p>
-        </footer>
     </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let quantity = 1;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Initialize dots
+        const dotsContainer = document.getElementById('sliderDots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateSlider() {
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Touch events for mobile swipe
+        const sliderContainer = document.querySelector('.slider-container');
+        
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveSlide(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveSlide(-1);
+            }
+        }
+
+        // Color selection
+        function selectColor(element) {
+            document.querySelectorAll('.color-choice').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // Size selection
+        function selectSize(element) {
+            document.querySelectorAll('.size-choice').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // Quantity control
+        function changeQuantity(delta) {
+            quantity += delta;
+            if (quantity < 1) quantity = 1;
+            if (quantity > 99) quantity = 99;
+            document.getElementById('quantity').textContent = quantity;
+        }
+    </script>
 </body>
 </html>
