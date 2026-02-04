@@ -1,95 +1,373 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>2026 ACTIVE WEAR CATALOG</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTIVE WEAR - 2025 Spring Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .product-category {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .product-features li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .product-price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.2);
+            border-color: #667eea;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .product-image {
+                height: 280px;
+            }
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85em;
+            z-index: 10;
+        }
+
+        .new-badge {
+            background: #27ae60;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>ACTIVE WEAR</h1>
+            <p>2025 Spring Collection - 20대를 위한 프리미엄 체육복</p>
+        </header>
 
-  <header class="hero">
-    <h1>ACTIVE WEAR CATALOG</h1>
-    <p>20대를 위한 데일리 트레이닝웨어</p>
-  </header>
+        <div class="catalog-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge new-badge">NEW</span>
+                    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=800&fit=crop" alt="어반 스포츠 세트">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">트레이닝 세트</span>
+                    <h2 class="product-title">어반 스포츠 세트</h2>
+                    <p class="product-description">
+                        도심 속 운동을 위한 스타일리시한 트레이닝복. 신축성 좋은 폴리에스터 소재로 편안한 착용감을 제공합니다.
+                    </p>
+                    <ul class="product-features">
+                        <li>4-way 신축성 원단</li>
+                        <li>속건성 기능성 소재</li>
+                        <li>UV 차단 기능</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">89,000원</div>
+                        <div class="product-colors">
+                            <div class="color-dot" style="background: #2c3e50;"></div>
+                            <div class="color-dot" style="background: #34495e;"></div>
+                            <div class="color-dot" style="background: #95a5a6;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <main class="catalog">
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge">BEST</span>
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=800&fit=crop" alt="프로 러너 세트">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">러닝 웨어</span>
+                    <h2 class="product-title">프로 러너 세트</h2>
+                    <p class="product-description">
+                        전문 러너들을 위한 초경량 러닝복. 통기성이 뛰어나며 야간 러닝을 위한 반사 디테일이 포함되어 있습니다.
+                    </p>
+                    <ul class="product-features">
+                        <li>초경량 메쉬 소재</li>
+                        <li>반사 안전 디테일</li>
+                        <li>항균 처리</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">119,000원</div>
+                        <div class="product-colors">
+                            <div class="color-dot" style="background: #e74c3c;"></div>
+                            <div class="color-dot" style="background: #3498db;"></div>
+                            <div class="color-dot" style="background: #f39c12;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- 상품 1 -->
-    <section class="item">
-      <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" />
-      <div class="info">
-        <h2>Urban Training Set</h2>
-        <p class="desc">가벼운 착용감과 스트릿 감성의 트레이닝 셋업</p>
-        <ul>
-          <li>소재: 폴리에스터 95%</li>
-          <li>컬러: 블랙</li>
-          <li>사이즈: M / L / XL</li>
-        </ul>
-      </div>
-    </section>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=800&fit=crop" alt="짐 마스터 세트">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">헬스 웨어</span>
+                    <h2 class="product-title">짐 마스터 세트</h2>
+                    <p class="product-description">
+                        헬스장에서 빛나는 근육 핏 트레이닝복. 압축 기능으로 운동 효율을 높이고 근육 회복을 도와줍니다.
+                    </p>
+                    <ul class="product-features">
+                        <li>컴프레션 기능</li>
+                        <li>근육 서포트 라인</li>
+                        <li>땀 흡수 속건 원단</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">99,000원</div>
+                        <div class="product-colors">
+                            <div class="color-dot" style="background: #2c3e50;"></div>
+                            <div class="color-dot" style="background: #c0392b;"></div>
+                            <div class="color-dot" style="background: #16a085;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- 상품 2 -->
-    <section class="item">
-      <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642" />
-      <div class="info">
-        <h2>Daily Jogger Pants</h2>
-        <p class="desc">일상과 운동 모두 가능한 슬림 조거팬츠</p>
-        <ul>
-          <li>소재: 코튼 혼방</li>
-          <li>컬러: 그레이</li>
-          <li>사이즈: S / M / L</li>
-        </ul>
-      </div>
-    </section>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge new-badge">NEW</span>
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=800&fit=crop" alt="플렉스 요가 세트">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">요가/필라테스</span>
+                    <h2 class="product-title">플렉스 요가 세트</h2>
+                    <p class="product-description">
+                        요가와 필라테스를 위한 초경량 세트. 부드러운 착용감과 완벽한 신축성으로 모든 동작을 자유롭게 합니다.
+                    </p>
+                    <ul class="product-features">
+                        <li>무봉제 심리스 디자인</li>
+                        <li>360도 스트레치</li>
+                        <li>피부 친화적 소재</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">79,000원</div>
+                        <div class="product-colors">
+                            <div class="color-dot" style="background: #e8b4e8;"></div>
+                            <div class="color-dot" style="background: #9b59b6;"></div>
+                            <div class="color-dot" style="background: #ecf0f1;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- 상품 3 -->
-    <section class="item">
-      <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb" />
-      <div class="info">
-        <h2>Performance Hoodie</h2>
-        <p class="desc">운동 후에도 스타일을 살려주는 후드</p>
-        <ul>
-          <li>소재: 기모 폴리</li>
-          <li>컬러: 네이비</li>
-          <li>사이즈: M / L / XL</li>
-        </ul>
-      </div>
-    </section>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge">HOT</span>
+                    <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&h=800&fit=crop" alt="스트릿 프로 세트">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">스트릿 스포츠</span>
+                    <h2 class="product-title">스트릿 프로 세트</h2>
+                    <p class="product-description">
+                        거리 운동과 일상을 연결하는 하이브리드 디자인. 스케이트보드, 농구 등 스트릿 스포츠에 최적화되어 있습니다.
+                    </p>
+                    <ul class="product-features">
+                        <li>내구성 강화 원단</li>
+                        <li>오버사이즈 핏</li>
+                        <li>멀티 포켓 디자인</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">109,000원</div>
+                        <div class="product-colors">
+                            <div class="color-dot" style="background: #2c3e50;"></div>
+                            <div class="color-dot" style="background: #27ae60;"></div>
+                            <div class="color-dot" style="background: #f39c12;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- 상품 4 -->
-    <section class="item">
-      <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246" />
-      <div class="info">
-        <h2>Light Windbreaker</h2>
-        <p class="desc">간절기용 초경량 바람막이</p>
-        <ul>
-          <li>소재: 나일론</li>
-          <li>컬러: 베이지</li>
-          <li>사이즈: M / L</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 상품 5 -->
-    <section class="item">
-      <img src="https://images.unsplash.com/photo-1520974735194-6c5f08c55c90" />
-      <div class="info">
-        <h2>Relax Training Shorts</h2>
-        <p class="desc">여름용 쿨링 트레이닝 반바지</p>
-        <ul>
-          <li>소재: 메쉬 폴리</li>
-          <li>컬러: 블랙</li>
-          <li>사이즈: S / M / L</li>
-        </ul>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 ACTIVE WEAR BRAND</p>
-  </footer>
-
+        <footer>
+            <p>© 2025 ACTIVE WEAR. All rights reserved.</p>
+            <p>문의: contact@activewear.com | 고객센터: 1588-0000</p>
+            <p>GitHub에서 호스팅 · <a href="https://github.com" target="_blank">Repository 방문하기</a></p>
+        </footer>
+    </div>
 </body>
 </html>
